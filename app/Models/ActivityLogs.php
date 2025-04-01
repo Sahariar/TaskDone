@@ -9,4 +9,5 @@ class ActivityLogs extends Model
 {
     /** @use HasFactory<\Database\Factories\ActivityLogsFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

@@ -9,4 +9,5 @@ class NotificationSettings extends Model
 {
     /** @use HasFactory<\Database\Factories\NotificationSettingsFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

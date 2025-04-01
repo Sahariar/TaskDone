@@ -9,4 +9,5 @@ class EmailTemplates extends Model
 {
     /** @use HasFactory<\Database\Factories\EmailTemplatesFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

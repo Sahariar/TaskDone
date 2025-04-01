@@ -9,4 +9,5 @@ class CustomNotifications extends Model
 {
     /** @use HasFactory<\Database\Factories\CustomNotificationsFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

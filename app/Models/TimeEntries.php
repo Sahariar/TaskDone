@@ -9,4 +9,5 @@ class TimeEntries extends Model
 {
     /** @use HasFactory<\Database\Factories\TimeEntriesFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

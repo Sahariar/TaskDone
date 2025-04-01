@@ -9,4 +9,5 @@ class Settings extends Model
 {
     /** @use HasFactory<\Database\Factories\SettingsFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

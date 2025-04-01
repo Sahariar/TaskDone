@@ -27,7 +27,7 @@ A comprehensive student management system built with Laravel 12, designed to sim
 ### Clone the repository
 ```bash
 git clone https://github.com/Sahariar/TaskDone.git
-cd laravel-student-management
+cd TaskDone
 ```
 
 ### Install dependencies

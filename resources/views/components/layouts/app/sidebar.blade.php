@@ -14,6 +14,8 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+
+                    <flux:navlist.item icon="home" :href="route('projects.index')" :current="request()->routeIs('projects')" wire:navigate>{{ __('Projects') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -45,13 +47,15 @@
                                     <span
                                         class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
                                     >
-                                        {{ auth()->user()->initials() }}
+                                    <img class="rounded-lg rtl:xl:ml-2" src="{{auth()->user()->avatar}}" alt="{{ auth()->user()->name }}">
                                     </span>
+
                                 </span>
 
                                 <div class="grid flex-1 text-left text-sm leading-tight">
                                     <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
                                     <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                    <span>{{ auth()->user()->getRoleNames()->implode(', ') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +99,7 @@
                                     <span
                                         class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
                                     >
-                                        {{ auth()->user()->initials() }}
+                                    <img class="rounded-lg rtl:xl:ml-2" src="{{auth()->user()->avatar}}" alt="{{ auth()->user()->name }}">
                                     </span>
                                 </span>
 

@@ -9,4 +9,5 @@ class TaskDependencies extends Model
 {
     /** @use HasFactory<\Database\Factories\TaskDependenciesFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

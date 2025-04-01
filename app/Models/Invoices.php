@@ -9,4 +9,5 @@ class Invoices extends Model
 {
     /** @use HasFactory<\Database\Factories\InvoicesFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

@@ -9,4 +9,5 @@ class Files extends Model
 {
     /** @use HasFactory<\Database\Factories\FilesFactory> */
     use HasFactory;
+    protected $guarded  =['id'];
 }

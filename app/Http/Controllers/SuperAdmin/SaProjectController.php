@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SuperAdmin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ProjectController extends Controller
+class SaProjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //
     public function index()
     {
         //
 
-        $projects = Project::where('user_id', Auth::id())#
-        ->withCount('tasks')
-        ->latest()
+        $projects = Project::latest()
         ->paginate(10);
 
         return view('projects.index' , compact('projects'));

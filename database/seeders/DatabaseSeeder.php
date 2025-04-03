@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             // Tasks and time tracking
             TaskCategoriesSeeder::class,
             TasksSeeder::class,
+            TaskCommentsSeeder::class,
             TimeEntriesSeeder::class,
 
             // Files

@@ -48,7 +48,7 @@ class TasksSeeder extends Seeder
 
                 Tasks::create([
                     'title' => 'Task ' . ($i + 1) . ' for ' . $project->name,
-                    'description' => 'This is a detailed description for task ' . ($i + 1) . ' of project ' . $project->name . '. ' . Str::random(100),
+                    'description' => 'This is a detailed description for task ' . ($i + 1) . ' of project ' . $project->name,
                     'project_id' => $project->id,
                     'status' => $statuses[array_rand($statuses)],
                     'priority' => $priorities[array_rand($priorities)],

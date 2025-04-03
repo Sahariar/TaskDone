@@ -23,8 +23,11 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::middleware(['auth', RoleMiddleware::class.':super-admin'])->group(function () {
     // Super-Admin routes
+    Route::get('/dashboard', [SaProjectController::class, 'dashboard'])->name('dashboard');
     Route::get('/projects', [SaProjectController::class, 'index'])->name('projects.index');
-
+    Route::get('/projects/{project}', [SaProjectController::class, 'show'])->name('projects.show');
+    Route::get('/tasks', [SaProjectController::class, 'tasks'])->name('tasks.index');
+    Route::get('/tasks/{task}', [SaProjectController::class, 'taskshow'])->name('tasks.show');
 });
 
 Route::middleware(['auth', RoleMiddleware::class.':project-manager'])->group(function () {

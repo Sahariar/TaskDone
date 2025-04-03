@@ -4,11 +4,19 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\TaskComments;
+use App\Models\Tasks;
 use Illuminate\Http\Request;
 
 class SaProjectController extends Controller
 {
     //
+
+    public function dashboard(){
+
+
+        return view('dashboard');
+    }
     public function index()
     {
         //
@@ -19,6 +27,25 @@ class SaProjectController extends Controller
         return view('projects.index' , compact('projects'));
     }
 
+    public function tasks()
+    {
+        //
+
+        $tasks = Tasks::latest()
+        ->paginate(10);
+
+        return view('tasks.index' , compact('tasks'));
+    }
+
+    public function taskshow(Tasks $task)
+    {
+        //
+        $comments = TaskComments::where('task_id', $task->id)
+        ->with('task') // Assuming you have a 'project' relationship defined in the Task model
+        ->latest()
+        ->paginate(10);
+        return view('tasks.show' , compact('task' , 'comments'));
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -38,9 +65,13 @@ class SaProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        $tasks = Tasks::where('project_id', $project->id)
+        ->with('project') // Assuming you have a 'project' relationship defined in the Task model
+        ->latest()
+        ->paginate(10);
+        return view('projects.show' , compact('project' , 'tasks'));
     }
 
     /**

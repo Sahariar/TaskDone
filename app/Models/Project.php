@@ -25,7 +25,7 @@ class Project extends Model
      * Get the user that owns the project.
      */
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class , 'manager_id');
     }
     /**
      * Get the tasks for the project.

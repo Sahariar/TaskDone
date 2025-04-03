@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 class ProjectSeeder extends Seeder
 {
     /**
@@ -37,7 +38,7 @@ class ProjectSeeder extends Seeder
 
         // Create 8-12 projects
         $projectCount = rand(8, 12);
-
+        $faker = Faker::create();
         $projectTypes = [
             'Website Development',
             'Mobile App',
@@ -77,7 +78,7 @@ class ProjectSeeder extends Seeder
 
             $project = Project::create([
                 'name' => $projectType . ' for ' . $company,
-                'description' => 'This is a ' . $projectType . ' project for ' . $company . '. ' . Str::random(200),
+                'description' => "This is a {$projectType} project for {$company}. " . $faker->paragraph(5),
                 'status' => $statuses[array_rand($statuses)],
                 'start_date' => $startDate,
                 'end_date' => $endDate,

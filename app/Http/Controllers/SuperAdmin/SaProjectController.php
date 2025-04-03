@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\TaskComments;
 use App\Models\Tasks;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SaProjectController extends Controller
@@ -13,18 +14,33 @@ class SaProjectController extends Controller
     //
 
     public function dashboard(){
+        $projects = Project::latest()->get();
+        $user = User::latest()->get();
 
+        $overallStats = [
+            'total_projects' => $projects->count(),
+            'total_tasks' => $projects->sum(function ($project) {
+                return $project->tasksStatistics['total'];
+            }),
+            'total_completed' => $projects->sum(function ($project) {
+                return $project->tasksStatistics['completed'];
+            }),
+            'todo' => $projects->sum(function ($project) {
+                return $project->tasksStatistics['todo'];
+            }),
+            'average_progress' => $projects->avg('progress_statistics'),
+            'total_users' => $user->count(),
+        ];
 
-        return view('dashboard');
+        return view('dashboard' , compact('projects', 'overallStats'));
     }
     public function index()
     {
         //
-
         $projects = Project::latest()
         ->paginate(10);
 
-        return view('projects.index' , compact('projects'));
+        return view('admin.projects.index' , compact('projects'));
     }
 
     public function tasks()
@@ -34,7 +50,7 @@ class SaProjectController extends Controller
         $tasks = Tasks::latest()
         ->paginate(10);
 
-        return view('tasks.index' , compact('tasks'));
+        return view('admin.tasks.index' , compact('tasks'));
     }
 
     public function taskshow(Tasks $task)
@@ -44,7 +60,7 @@ class SaProjectController extends Controller
         ->with('task') // Assuming you have a 'project' relationship defined in the Task model
         ->latest()
         ->paginate(10);
-        return view('tasks.show' , compact('task' , 'comments'));
+        return view('admin.tasks.show' , compact('task' , 'comments'));
     }
     /**
      * Show the form for creating a new resource.
@@ -71,7 +87,7 @@ class SaProjectController extends Controller
         ->with('project') // Assuming you have a 'project' relationship defined in the Task model
         ->latest()
         ->paginate(10);
-        return view('projects.show' , compact('project' , 'tasks'));
+        return view('admin.projects.show' , compact('project' , 'tasks'));
     }
 
     /**

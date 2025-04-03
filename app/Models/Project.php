@@ -39,10 +39,10 @@ class Project extends Model
     public function getTasksStatisticsAttribute(){
         return[
             'total' => $this->tasks->count(),
-            'todo' => $this->tasks->where('status', 'todo')->count(),
+            'todo' => $this->tasks->where('status', 'to_do')->count(),
             'in_progress' => $this->tasks->where('status', 'in_progress')->count(),
-            'review' => $this->tasks->where('status', 'review')->count(),
-            'completed' => $this->tasks->where('status', 'completed')->count(),
+            'review' => $this->tasks->where('status', 'in_review')->count(),
+            'completed' => $this->tasks->where('status', 'done')->count(),
         ];
 
     }
@@ -54,8 +54,8 @@ class Project extends Model
         if($totalTasks == 0){
             return 0;
         }
-        $completedTasks = $this->tasks->where('status' , 'completed')->count();
-        return (($completedTasks / $totalTasks) * 100);
+        $completedTasks = $this->tasks->where('status' , 'done')->count();
+        return (round(($completedTasks / $totalTasks) * 100));
     }
 
 }

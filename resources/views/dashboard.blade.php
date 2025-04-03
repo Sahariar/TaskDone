@@ -3,19 +3,25 @@
         <div class="grid auto-rows-min gap-4">
             <x-dashadmin :title="__('Dashbaord')" />
         </div>
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+        <div class="grid auto-rows-min gap-4 md:grid-cols-4">
+            <div class="relative overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                <x-card :title="'Total Projects'" :value="$overallStats['total_projects']" :color="'teal'"  :change="'1.7'" :lastWeek="'5'" />
             </div>
             <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+                <x-card :title="'Total Tasks'" :value="$overallStats['total_tasks']" :color="'sky'" :change="'2.7'" :lastWeek="'15'"/>
             </div>
             <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+                <x-card :title="'Total completed'" :value="$overallStats['total_completed']" :color="'red'" :change="'1.8'" :lastWeek="'6'"/>
             </div>
-        </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                <x-card :title="'Avarage progress'" :value="$overallStats['average_progress']" :color="'pink'" :change="'.9'" :lastWeek="'3'"/>
+            </div>
+            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                <x-card :title="'To do'" :value="$overallStats['todo']" :color="'purple'" :change="'0.7'" :lastWeek="'5'"/>
+            </div>
+            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                <x-card :title="'Register User'" :value="$overallStats['total_users']" :change="'3.7'" :lastWeek="'25'"/>
+            </div>
         </div>
     </div>
 </x-layouts.app>
